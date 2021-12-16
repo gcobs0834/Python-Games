@@ -4,6 +4,7 @@
 python games.py
 
 ## Dir
+```
 Python-Games
   |-- PYTHON-GAMES-MAIN
         |-- games.py # main file
@@ -13,3 +14,4 @@ Python-Games
         |-- drinkingGame.py
         |-- guessNumGame.py
         |-- guessPassword.py
+```
