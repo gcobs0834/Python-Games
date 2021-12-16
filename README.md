@@ -1,3 +1,4 @@
 # Python-Games
 
-## python games.py
+## How to use 
+python games.py
