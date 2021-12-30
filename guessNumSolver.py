@@ -6,16 +6,16 @@ try:
 except:
     raw_input = input
 
-digits = '123456789'
+digits = '0123456789'
 size = 4
- 
+
 def parse_score(score):
     score = score.strip().split(',')
     return tuple(int(s.strip()) for s in score)
- 
-def scorecalc(guess, chosen):
+
+def scorecalc(guess, ans):
     a, b = 0, 0
-    for i in range(4):
+    for i in range(size):
         if guess[i] == ans[i]:
             a += 1
         elif guess[i] in ans:
@@ -26,6 +26,7 @@ choices = list(permutations(digits, size))
 shuffle(choices)
 answers = []
 scores  = []
+# [(1,2)]
  
 print ("猜數字遊戲共有{}個不重複的數字".format(size))
  
@@ -41,10 +42,11 @@ while True:
     if found:
         print ("恭喜!")
         break
-    choices = [c for c in choices if scorecalc(c, ans) == score]
+    choices = [c for c in choices if (scorecalc(c, ans) == score)]
     if not choices:
         print ("你確定這幾組都不是你的答案嗎? ")
         print ('  ' +
                '\n  '.join("{}->{}".format(''.join(an),sc)
                            for an,sc in zip(answers, scores)))
         break
+
