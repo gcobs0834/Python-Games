@@ -10,10 +10,15 @@ Bet = 0
 def gameStart():
 
     while True:
-        Bet = int(input('請輸入您的賭注: '))
-        if (Bet > 0 and Bet < 10000):
+        Bet = input('請輸入您的賭注: ')
+        try:
+            Bet = int(Bet)
+        except ValueError:
+            print("請輸入整數")
+            continue
+        if (Bet > 0 and Bet < 9999999999):
             break
-        print('請輸入0~10000之間')
+        print('請輸入0~9999999999之間')
         
     
     while True:
