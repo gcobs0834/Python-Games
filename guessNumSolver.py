@@ -5,11 +5,7 @@ try:
     raw_input
 except:
     raw_input = input
-try:
-    from itertools import izip
-except:
-    izip = zip
- 
+
 digits = '123456789'
 size = 4
  
@@ -31,25 +27,24 @@ shuffle(choices)
 answers = []
 scores  = []
  
-print ("Playing Bulls & Cows with %i unique digits\n" % size)
+print ("猜數字遊戲共有{}個不重複的數字".format(size))
  
 while True:
     ans = choices[0]
     answers.append(ans)
-    #print ("(Narrowed to %i possibilities)" % len(choices))
-    score = raw_input("Guess %2i is %*s. Answer (Bulls, cows)? "
-                      % (len(answers), size, ''.join(ans)))
+    print ("(剩下{}組)".format(len(choices)))
+    score = raw_input("第{}次: 是{}嗎? 幾a幾b? ".format(len(answers), ''.join(ans)))
     score = parse_score(score)
     scores.append(score)
-    #print("Bulls: %i, Cows: %i" % score)
+    print("{} A, {} B".format(score[0], score[1]))
     found =  score == (size, 0)
     if found:
-        print ("Ye-haw!")
+        print ("恭喜!")
         break
     choices = [c for c in choices if scorecalc(c, ans) == score]
     if not choices:
-        print ("Bad scoring? nothing fits those scores you gave:")
+        print ("你確定這幾組都不是你的答案嗎? ")
         print ('  ' +
-               '\n  '.join("%s -> %s" % (''.join(an),sc)
-                           for an,sc in izip(answers, scores)))
+               '\n  '.join("{}->{}".format(''.join(an),sc)
+                           for an,sc in zip(answers, scores)))
         break
